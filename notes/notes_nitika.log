@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.13)  2 JUL 2019 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.13)  9 JUL 2019 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -291,31 +291,98 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./disk_face.jpg> <./disk_e
-dge.jpg>] [2] (./notes_nitika.aux) ) 
+dge.jpg>]
+<cscb.jpg, id=19, 433.62pt x 289.08pt>
+File: cscb.jpg Graphic file (type jpg)
+<use cscb.jpg>
+Package pdftex.def Info: cscb.jpg  used on input line 79.
+(pdftex.def)             Requested size: 234.8775pt x 156.58607pt.
+<disk.jpg, id=20, 614.295pt x 389.455pt>
+File: disk.jpg Graphic file (type jpg)
+<use disk.jpg>
+Package pdftex.def Info: disk.jpg  used on input line 87.
+(pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
+ [2 <./cscb.jpg> <./disk.jpg>]
+<halo_face.jpg, id=24, 571.13374pt x 597.23125pt>
+File: halo_face.jpg Graphic file (type jpg)
+<use halo_face.jpg>
+Package pdftex.def Info: halo_face.jpg  used on input line 107.
+(pdftex.def)             Requested size: 232.52643pt x 243.15315pt.
+<halo_edge.jpg, id=25, 569.12625pt x 597.23125pt>
+File: halo_edge.jpg Graphic file (type jpg)
+<use halo_edge.jpg>
+Package pdftex.def Info: halo_edge.jpg  used on input line 108.
+(pdftex.def)             Requested size: 227.83147pt x 239.08875pt.
+<halo.jpg, id=26, 614.295pt x 389.455pt>
+File: halo.jpg Graphic file (type jpg)
+<use halo.jpg>
+Package pdftex.def Info: halo.jpg  used on input line 129.
+(pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3 <./halo_face.jpg> <./halo_edge.jpg>]
+<Hopkins1.jpg, id=30, 433.62pt x 289.08pt>
+File: Hopkins1.jpg Graphic file (type jpg)
+<use Hopkins1.jpg>
+Package pdftex.def Info: Hopkins1.jpg  used on input line 144.
+(pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
+<Hopkins2.jpg, id=31, 433.62pt x 289.08pt>
+File: Hopkins2.jpg Graphic file (type jpg)
+<use Hopkins2.jpg>
+Package pdftex.def Info: Hopkins2.jpg  used on input line 145.
+(pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
+ [4 <./halo.jpg> <./Hopkins1.jpg> <./Hopkins2.jpg>]
+<Smolcic.jpg, id=38, 433.62pt x 289.08pt>
+File: Smolcic.jpg Graphic file (type jpg)
+<use Smolcic.jpg>
+Package pdftex.def Info: Smolcic.jpg  used on input line 155.
+(pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
+<Condon.jpg, id=39, 411.5375pt x 299.1175pt>
+File: Condon.jpg Graphic file (type jpg)
+<use Condon.jpg>
+Package pdftex.def Info: Condon.jpg  used on input line 168.
+(pdftex.def)             Requested size: 230.18253pt x 167.30382pt.
+ [5 <./Smolcic.jpg> <./Condon.jpg>]
+<T_b.jpg, id=43, 433.62pt x 289.08pt>
+File: T_b.jpg Graphic file (type jpg)
+<use T_b.jpg>
+Package pdftex.def Info: T_b.jpg  used on input line 186.
+(pdftex.def)             Requested size: 277.15373pt x 184.77678pt.
+<disk_mod.jpg, id=44, 614.295pt x 389.455pt>
+File: disk_mod.jpg Graphic file (type jpg)
+<use disk_mod.jpg>
+Package pdftex.def Info: disk_mod.jpg  used on input line 200.
+(pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
+ [6 <./T_b.jpg> <./disk_mod.jpg>] [7] (./notes_nitika.aux) ) 
 Here is how much of TeX's memory you used:
- 2652 strings out of 494880
- 36195 string characters out of 6179601
- 102244 words of memory out of 5000000
- 5944 multiletter control sequences out of 15000+600000
+ 2716 strings out of 494880
+ 37047 string characters out of 6179601
+ 101317 words of memory out of 5000000
+ 5997 multiletter control sequences out of 15000+600000
  9369 words of font info for 34 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 41i,10n,32p,560b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti10.pfb>
-Output written on notes_nitika.pdf (2 pages, 198717 bytes).
+ 41i,10n,32p,700b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on notes_nitika.pdf (7 pages, 619119 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 101 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
