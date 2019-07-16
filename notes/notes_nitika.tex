@@ -18,7 +18,7 @@
 \section{Sky Brightness Model for a Disk+Halo and Extragalactic Sources}
 
 \subsection{Contribution from Disk}
-Given a pair of galactic coordinates, we need to determine the line of sight through the disk. This, combined with the emissivity of the disk, will allow us to know the flux density contributed by the disk.
+Given a pair of galactic coordinates, we need to determine the line of sight through the disk. This, combined with the emission coefficient of the disk, will allow us to know the specific intensity contributed by the disk.
 
 \begin{figure}[h]
 \begin{center}
@@ -69,8 +69,8 @@ $ D_{disk} = \frac{h}{sin(b)} $ & if $|b| > tan^{-1} \left(\frac{h/2}{r} \right)
 \end{tabular}
 \end{table}
 
-Then, given an emissivity for the disk, 
-\[F_{\nu, disk} = P_{\nu, disk}D_{disk} \]
+Then, given an emission coefficient for the disk, 
+\[I_{\nu, disk} = j_{\nu, disk}D_{disk} \]
 
 In order to check these derived equations, we use example values approximated from the Subrahmanyan and Cowsik paper. A separate analysis will be done later to determine the model parameters that best fit our model to data. The disk model can be verified by plotting $ T_{b}\ vs\ csc(b)$, as shown in Figure~\ref{cscb} below. The plot is linear as expected for a correct model. A map of the brightness contributed just from the disk is shown in Figure~\ref{disk_map}.
 
@@ -119,8 +119,8 @@ If $l > 90\degree$,
 
 \[ D_{halo} = \sqrt{R_{halo}^{2} + d_{proj}^{2} - 2R_{halo}d_{proj}cos\left[b - sin^{-1}\left(\frac{d_{proj}sin(b)}{R_{halo}}\right)\right] }  \]
 
-Then, given an emissivity for the halo, 
-\[F_{\nu, halo} = P_{\nu, halo}D_{halo} \]
+Then, given an emission coefficient for the halo, 
+\[I_{\nu, halo} = j_{\nu, halo}D_{halo} \]
 
 A map of the brightness contributed just from the halo is shown in Figure~\ref{halo_map}, again using example values taken from the Subrahmanyan and Cowsik paper for the purpose of checking our derived equations.
 
@@ -193,7 +193,7 @@ Total brightness temperature is given by the following equation. A plot represen
  
 \subsection{Masking Pixels in Central Latitudes}
 
-Latitudes between $ -10\degree < b < 10\degree$ include emission from the galactic center that is not well understood. For our analysis, we wish to ignore these regions. Therefore, I have used healpy's pixel querying function to set all of the pixels between these latitudes to zero. The resulting map is shown in Figure~\ref{disk_mod}.
+Latitudes between $ -10\degree < b < 10\degree$ include emission from the galactic center that is not well understood. For our analysis, we wish to ignore these regions. Therefore, I have used \texttt{healpy}'s pixel querying function to set all of the pixels between these latitudes to \texttt{None}. The resulting map is shown in Figure~\ref{disk_mod}.
 
 \begin{figure}[h]
 \begin{center}
@@ -204,22 +204,47 @@ Latitudes between $ -10\degree < b < 10\degree$ include emission from the galact
 \end{figure}
 
 
-\section{Deriving Emissivity from Brightness Temperature}
-Given some brightness temperature for both the halo and the disk (such as those given in the Subrahmanyan and Cowsik paper), I want to calculate the the emissivity (power per volume) for the disk and halo. To start, we can use the brightness temperature to calculate specific intensity using the Rayleigh Jeans approximation. 
-\[ I_{\nu} = \frac{2\nu^{2}}{c^{2}}kT \]
+\section{Deriving Emission Coefficient from Brightness Temperature}
+Given some brightness temperature, $T_{b}$, for both the halo and the disk (such as those given in the Subrahmanyan and Cowsik paper), I want to calculate the the emission coefficient (power per volume per steradian) for the disk and halo. To start, we can use the brightness temperature to calculate specific intensity using the Rayleigh Jeans approximation. 
+\[ I_{\nu} = \frac{2\nu^{2}}{c^{2}}kT_{b} \]
 
-From the specific intensity, to derive a emissivity, we need to integrate over the solid angle and divide by the length of the line of sight. We can assume that the intensity is constant with respect to the $\phi$ and $\theta$ values in question. All values of brightness temperature in the Subrahmanyan and Cowsik paper are given based on an observer in the galactic center. In the following equation, $\Omega$ is the solid angle and \emph{s} is the length of the line of sight. This will be either $R_{halo}$ or $R_{disk}$.
-\[ P_{\nu} = \frac{\Omega I_{\nu}}{s} \]
+From there, see Chapter 1 of \emph{Radiative Processes} by Rybicki and Lightman for the following equation relating specific intensity and emission coefficient. 
 
-Given this, the emissivity for the spherical galactic halo is given by 
+\[ dI_{\nu} = j_{\nu}ds  \]
 
-\[P_{\nu, halo} = (4\pi)\left(\frac{2\nu^{2}}{c^{2}}kT\right)\left(\frac{1}{R_{halo}}\right)\]
+Assuming that $j_{\nu}$ is constant along all lines of sight and given a line of sight distance $D$, 
 
-while the emissivity for a disk is given by 
-\[P_{\nu, disk} = \left[ 2\pi tan^{-1}\left(\frac{h_{disk}}{R_{disk}}\right) \right]\left(\frac{2\nu^{2}}{c^{2}}kT\right)\left(\frac{1}{R_{disk}}\right)\]
+\[ I_{\nu} = j_{\nu}D \]
 
-Then, the flux density along a line of sight can be given by 
+Given this, the emission coefficient for the spherical galactic halo is given by 
 
-\[F_{\nu} = P_{\nu, halo}D_{halo} + P_{\nu, disk}D_{disk} \]
+\[j_{\nu, halo} = \left(\frac{2\nu^{2}}{c^{2}}kT_{b, halo}\right)\left(\frac{1}{R_{halo}}\right)\]
+
+while the emission for a disk is given by 
+\[j_{\nu, disk} = \left(\frac{2\nu^{2}}{c^{2}}kT_{b, disk}\right)\left(\frac{1}{R_{disk}}\right)\]
+
+Then, the specific intensity along a line of sight can be given by 
+
+\[I_{\nu} = j_{\nu, halo}D_{halo} + j_{\nu, disk}D_{disk} \]
+
+\section{Fitting Model Parameters}
+This section describes our methods for fitting model parameters to all sky maps downloaded from LAMBDA (https://lambda.gsfc.nasa.gov/). In order to calculate model paramters that best fit the data, we use Python package \texttt{emcee}. 
+
+\subsection{Attempt 1: Minimizing the Minimum of Residuals}
+In our first attempt to fit our model to data, we assumed brightness contributions from a disk, extragalactic sources, and the CMB. Our likelihood function first calcualted residuals as a function of $l$ and $b$ as follows
+
+\[ T_{residual}(l,b) = T_{sky}(l,b) - T_{disk}(l,b) - T_{extragalactic} - T_{CMB} \]
+
+To calculate our likelihood, we then assumed
+
+\[ S = min\left(|T_{residual}(l,b)|\right) \] 
+
+and 
+
+\[ L\ \propto\ exp\left[-\frac{S^2}{2T_{rms}^2}\right] \]
+
+For this test, I downloaded the 1.4 GHz all sky map made by the Stockert and Villa-Elisa telescopes. The $3\sigma\ T_{rms}$ is reported to be 50 mK for this 1.4 GHz map. As the resolution of this map is quite high, \texttt{hp.pixelfunc.ud\_grade} is used downgrade the resolution, which speeds up the calculations. This model was not successful in predicting the model parameters, as creating a statistic based on only one pixel per sky map is unreliable. 
+
+\subsection{Attempt 2: Minimizing Contributions of Non-noise Residuals}
 
 \end{document}
