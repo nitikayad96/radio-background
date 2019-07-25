@@ -44,7 +44,7 @@ def lnprior(param):
     j_halo = param[4]
     T_bkg = param[5]
     
-    if d < R_disk < 100*d and 0 < h_disk < 5*d and 1e-42 < j_disk < 1e-39 and R_halo > 0 and 1e-43 < j_halo < 1e-38 and T_bkg > 0:
+    if d < R_disk < 100*d and 0 < h_disk < 5*d and 1e-42 < j_disk < 1e-39 and R_halo > d and 1e-43 < j_halo < 1e-38 and T_bkg >= 0:
         return 0.0
     
     return -np.inf
@@ -57,13 +57,13 @@ def lnprob(param, nu, l, b, T_sky, T_eg, idx_exb):
     lp = lnprior(param)
     if not np.isfinite(lp):
         return -np.inf
-    return lp + LP.diskhalobkg(param, nu, l, b, T_sky, T_eg, idx_exb)
+    return lp + LP.diskhalobkg_nocmb(param, nu, l, b, T_sky, T_eg, idx_exb)
 
 ### initialize walkers ###
 # You change: ndim, nwalkers, param_init values
 ndim = 6
-nwalkers = 20
-param_init = [2*d, 0.17*d, 2e-41, 4*d, 2.2e-42, 0.1]
+nwalkers = 100
+param_init = [2*d, 0.15*d, 10**(-40.62), 3.7*d, 10**(-41.56), 3.1]
 
 init = [param_init]
 for i in range(nwalkers-1):
@@ -75,12 +75,12 @@ init = np.array(init)
 
 ### set up sampler and run MCMC ###
 # You change: nsteps, filename
-sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(nu, l, b, map_1420_dg, T_eg, idx_exb), threads=4)
+sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, args=(nu, l, b, map_1420_dg, T_eg, idx_exb), threads=8)
 
-SAMPLER = sampler.run_mcmc(init, 100, progress=True)
+SAMPLER = sampler.run_mcmc(init, 500, progress=True)
 
 samples_ = np.array(sampler.chain)
 print('Average acceptance fraction: ', np.mean(sampler.acceptance_fraction))
 
-np.savez("disk+halo+bkg+eg+cmb.npz", samples=samples_ )
+np.savez("disk+halo+bkg_stdres.npz", samples=samples_ )
 
