@@ -5,6 +5,7 @@
 # R_disk, h_disk, R_halo can all be arrays
 
 import numpy as np
+from const import *
 
 def LineOfSightDisk(l, b, d, R_disk, h_disk):
     
@@ -52,6 +53,10 @@ def LineOfSightHalo(l, b, d, R_halo):
     R_eff_below = np.sqrt((R_halo**2) + (d**2) - (2*R_halo*d*np.cos(B_halo1))) - d_proj
     B_halo_below = (np.pi - b - np.arcsin((d_proj/R_eff_below)*np.sin(b)))
     D_tot_below = (l < np.pi/2)*(np.sqrt((R_eff_below**2) + (d_proj**2) - (2*R_eff_below*d_proj*np.cos(B_halo_below))))
+
+    # fixes bug for low R_halo (<~2.3 d)
+    D_tot_above[np.isnan(D_tot_above)] = 0.
+    D_tot_below[np.isnan(D_tot_below)] = 0.
     
     
     D_halo = D_tot_above + D_tot_below
@@ -79,3 +84,13 @@ def cscbplot(Tmap, NSIDE):
         Tb_mean.append(np.mean(Tmap[idx]))
         
     return [cscb, Tb_mean]
+
+
+# function to simulate a map. To just simulate a disk / halo, set j_halo / j_disk to 0. 
+def sim_map(T_bkg, R_disk, h_disk, j_disk, R_halo, j_halo, noise = 0.01):
+
+    model = LineOfSightDisk(l, b, d, R_disk, h_disk)*j_disk*(c**2)/(2*k*(nu**2)) + T_bkg + LineOfSightHalo(l, b, d, R_halo)*j_halo*(c**2)/(2*k*(nu**2))
+
+    model += noise*np.random.normal(size=len(model))
+
+    return model
