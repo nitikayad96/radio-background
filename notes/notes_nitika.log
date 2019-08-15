@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.13)  15 JUL 2019 15:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.8.1)  13 AUG 2019 11:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **notes_nitika.tex
 (./notes_nitika.tex
 LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 5 language(s) loaded.
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
@@ -116,6 +116,14 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 (/usr/share/texlive/texmf-dist/tex/latex/was/gensymb.sty
 Package: gensymb 2003/07/02 v1.0 (WaS)
 )
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
+Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
+\col@sep=\dimen114
+\extrarowheight=\dimen115
+\NC@list=\toks22
+\extratabsurround=\skip46
+\backup@length=\skip47
+)
 (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
@@ -132,45 +140,45 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@cnth=\count100
 \Gm@cntv=\count101
 \c@Gm@tempcnt=\count102
-\Gm@bindingoffset=\dimen114
-\Gm@wd@mp=\dimen115
-\Gm@odd@mp=\dimen116
-\Gm@even@mp=\dimen117
-\Gm@layoutwidth=\dimen118
-\Gm@layoutheight=\dimen119
-\Gm@layouthoffset=\dimen120
-\Gm@layoutvoffset=\dimen121
-\Gm@dimlist=\toks22
+\Gm@bindingoffset=\dimen116
+\Gm@wd@mp=\dimen117
+\Gm@odd@mp=\dimen118
+\Gm@even@mp=\dimen119
+\Gm@layoutwidth=\dimen120
+\Gm@layoutheight=\dimen121
+\Gm@layouthoffset=\dimen122
+\Gm@layoutvoffset=\dimen123
+\Gm@dimlist=\toks23
 )
 (./notes_nitika.aux)
 \openout1 = `notes_nitika.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count103
-\scratchdimen=\dimen122
+\scratchdimen=\dimen124
 \scratchbox=\box30
 \nofMPsegments=\count104
 \nofMParguments=\count105
-\everyMPshowfont=\toks23
+\everyMPshowfont=\toks24
 \MPscratchCnt=\count106
-\MPscratchDim=\dimen123
+\MPscratchDim=\dimen125
 \MPnumerator=\count107
 \makeMPintoPDFobject=\count108
-\everyMPtoPDFconversion=\toks24
+\everyMPtoPDFconversion=\toks25
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -223,15 +231,15 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \celsius on input line 15.
-Package gensymb Info: Faking symbols for \degree and \celsius on input line 15.
+LaTeX Info: Redefining \celsius on input line 17.
+Package gensymb Info: Faking symbols for \degree and \celsius on input line 17.
 
 
 
 Package gensymb Warning: Not defining \perthousand.
 
-LaTeX Info: Redefining \ohm on input line 15.
-Package gensymb Info: Using \Omega for \ohm on input line 15.
+LaTeX Info: Redefining \ohm on input line 17.
+Package gensymb Info: Using \Omega for \ohm on input line 17.
 
 Package gensymb Warning: Not defining \micro.
 
@@ -270,7 +278,7 @@ Package gensymb Warning: Not defining \micro.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Overfull \hbox (7.24625pt too wide) in paragraph at lines 18--18
+Overfull \hbox (7.24625pt too wide) in paragraph at lines 20--20
 []\OT1/cmr/bx/n/14.4 Sky Bright-ness Model for a Disk+Halo and Ex-tra-galac-tic
  Sources 
  []
@@ -278,12 +286,12 @@ Overfull \hbox (7.24625pt too wide) in paragraph at lines 18--18
 <disk_face.jpg, id=1, 558.085pt x 537.00626pt>
 File: disk_face.jpg Graphic file (type jpg)
 <use disk_face.jpg>
-Package pdftex.def Info: disk_face.jpg  used on input line 25.
+Package pdftex.def Info: disk_face.jpg  used on input line 27.
 (pdftex.def)             Requested size: 183.20416pt x 176.27849pt.
 <disk_edge.jpg, id=2, 1061.9675pt x 341.275pt>
 File: disk_edge.jpg Graphic file (type jpg)
 <use disk_edge.jpg>
-Package pdftex.def Info: disk_edge.jpg  used on input line 26.
+Package pdftex.def Info: disk_edge.jpg  used on input line 28.
 (pdftex.def)             Requested size: 277.15373pt x 89.06789pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -295,28 +303,28 @@ dge.jpg>]
 <cscb.jpg, id=19, 433.62pt x 289.08pt>
 File: cscb.jpg Graphic file (type jpg)
 <use cscb.jpg>
-Package pdftex.def Info: cscb.jpg  used on input line 79.
+Package pdftex.def Info: cscb.jpg  used on input line 81.
 (pdftex.def)             Requested size: 234.8775pt x 156.58607pt.
 <disk.jpg, id=20, 614.295pt x 389.455pt>
 File: disk.jpg Graphic file (type jpg)
 <use disk.jpg>
-Package pdftex.def Info: disk.jpg  used on input line 87.
+Package pdftex.def Info: disk.jpg  used on input line 89.
 (pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
  [2 <./cscb.jpg> <./disk.jpg>]
 <halo_face.jpg, id=24, 571.13374pt x 597.23125pt>
 File: halo_face.jpg Graphic file (type jpg)
 <use halo_face.jpg>
-Package pdftex.def Info: halo_face.jpg  used on input line 107.
+Package pdftex.def Info: halo_face.jpg  used on input line 109.
 (pdftex.def)             Requested size: 232.52643pt x 243.15315pt.
 <halo_edge.jpg, id=25, 569.12625pt x 597.23125pt>
 File: halo_edge.jpg Graphic file (type jpg)
 <use halo_edge.jpg>
-Package pdftex.def Info: halo_edge.jpg  used on input line 108.
+Package pdftex.def Info: halo_edge.jpg  used on input line 110.
 (pdftex.def)             Requested size: 227.83147pt x 239.08875pt.
 <halo.jpg, id=26, 614.295pt x 389.455pt>
 File: halo.jpg Graphic file (type jpg)
 <use halo.jpg>
-Package pdftex.def Info: halo.jpg  used on input line 129.
+Package pdftex.def Info: halo.jpg  used on input line 131.
 (pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
 
 
@@ -326,64 +334,119 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <Hopkins1.jpg, id=30, 433.62pt x 289.08pt>
 File: Hopkins1.jpg Graphic file (type jpg)
 <use Hopkins1.jpg>
-Package pdftex.def Info: Hopkins1.jpg  used on input line 144.
+Package pdftex.def Info: Hopkins1.jpg  used on input line 146.
 (pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
 <Hopkins2.jpg, id=31, 433.62pt x 289.08pt>
 File: Hopkins2.jpg Graphic file (type jpg)
 <use Hopkins2.jpg>
-Package pdftex.def Info: Hopkins2.jpg  used on input line 145.
+Package pdftex.def Info: Hopkins2.jpg  used on input line 147.
 (pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
  [4 <./halo.jpg> <./Hopkins1.jpg> <./Hopkins2.jpg>]
 <Smolcic.jpg, id=38, 433.62pt x 289.08pt>
 File: Smolcic.jpg Graphic file (type jpg)
 <use Smolcic.jpg>
-Package pdftex.def Info: Smolcic.jpg  used on input line 155.
+Package pdftex.def Info: Smolcic.jpg  used on input line 157.
 (pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
 <Condon.jpg, id=39, 411.5375pt x 299.1175pt>
 File: Condon.jpg Graphic file (type jpg)
 <use Condon.jpg>
-Package pdftex.def Info: Condon.jpg  used on input line 168.
+Package pdftex.def Info: Condon.jpg  used on input line 170.
 (pdftex.def)             Requested size: 230.18253pt x 167.30382pt.
  [5 <./Smolcic.jpg> <./Condon.jpg>]
 <T_b.jpg, id=43, 433.62pt x 289.08pt>
 File: T_b.jpg Graphic file (type jpg)
 <use T_b.jpg>
-Package pdftex.def Info: T_b.jpg  used on input line 186.
+Package pdftex.def Info: T_b.jpg  used on input line 188.
 (pdftex.def)             Requested size: 277.15373pt x 184.77678pt.
 <disk_mod.jpg, id=44, 614.295pt x 389.455pt>
 File: disk_mod.jpg Graphic file (type jpg)
 <use disk_mod.jpg>
-Package pdftex.def Info: disk_mod.jpg  used on input line 200.
+Package pdftex.def Info: disk_mod.jpg  used on input line 202.
 (pdftex.def)             Requested size: 281.85587pt x 178.69388pt.
- [6 <./T_b.jpg> <./disk_mod.jpg>] [7] [8] (./notes_nitika.aux) ) 
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6 <./T_b.jpg>] [7 <./disk_mod.jpg>]
+<EDFexample.jpg, id=54, 433.62pt x 289.08pt>
+File: EDFexample.jpg Graphic file (type jpg)
+<use EDFexample.jpg>
+Package pdftex.def Info: EDFexample.jpg  used on input line 259.
+(pdftex.def)             Requested size: 281.85587pt x 187.913pt.
+<kstestPDF.jpg, id=55, 433.62pt x 289.08pt>
+File: kstestPDF.jpg Graphic file (type jpg)
+<use kstestPDF.jpg>
+Package pdftex.def Info: kstestPDF.jpg  used on input line 274.
+(pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
+<kstest_pvaluedist.jpg, id=56, 433.62pt x 289.08pt>
+File: kstest_pvaluedist.jpg Graphic file (type jpg)
+<use kstest_pvaluedist.jpg>
+Package pdftex.def Info: kstest_pvaluedist.jpg  used on input line 275.
+(pdftex.def)             Requested size: 230.18253pt x 153.45427pt.
+ [8 <./EDFexample.jpg>]
+<simulated_map.jpg, id=60, 614.295pt x 389.455pt>
+File: simulated_map.jpg Graphic file (type jpg)
+<use simulated_map.jpg>
+Package pdftex.def Info: simulated_map.jpg  used on input line 284.
+(pdftex.def)             Requested size: 277.85493pt x 176.15813pt.
+
+Overfull \hbox (42.97743pt too wide) in paragraph at lines 284--285
+ [][] 
+ []
+
+[9 <./kstestPDF.jpg> <./kstest_pvaluedist.jpg> <./simulated_map.jpg>]
+<corner_simdata.jpg, id=64, 1003.75pt x 1003.75pt>
+File: corner_simdata.jpg Graphic file (type jpg)
+<use corner_simdata.jpg>
+Package pdftex.def Info: corner_simdata.jpg  used on input line 324.
+(pdftex.def)             Requested size: 469.75502pt x 469.75618pt.
+ [10 <./corner_simdata.jpg>]
+<corner_disk+bkg.jpg, id=68, 700.6175pt x 700.6175pt>
+File: corner_disk+bkg.jpg Graphic file (type jpg)
+<use corner_disk+bkg.jpg>
+Package pdftex.def Info: corner_disk+bkg.jpg  used on input line 336.
+(pdftex.def)             Requested size: 469.75502pt x 469.76407pt.
+ [11 <./corner_disk+bkg.jpg>]
+<corner_disk+halo+bkg.jpg, id=72, 1003.75pt x 1003.75pt>
+File: corner_disk+halo+bkg.jpg Graphic file (type jpg)
+<use corner_disk+halo+bkg.jpg>
+Package pdftex.def Info: corner_disk+halo+bkg.jpg  used on input line 348.
+(pdftex.def)             Requested size: 469.75502pt x 469.75618pt.
+ [12 <./corner_disk+halo+bkg.jpg>]
+<corner_disk+halo.jpg, id=76, 852.18375pt x 852.18375pt>
+File: corner_disk+halo.jpg Graphic file (type jpg)
+<use corner_disk+halo.jpg>
+Package pdftex.def Info: corner_disk+halo.jpg  used on input line 358.
+(pdftex.def)             Requested size: 436.86871pt x 436.87053pt.
+ [13 <./corner_disk+halo.jpg>] [14] (./notes_nitika.aux) ) 
 Here is how much of TeX's memory you used:
- 2719 strings out of 494880
- 37086 string characters out of 6179601
- 101317 words of memory out of 5000000
- 5999 multiletter control sequences out of 15000+600000
+ 2810 strings out of 492982
+ 38604 string characters out of 6134897
+ 106846 words of memory out of 5000000
+ 6322 multiletter control sequences out of 15000+600000
  9537 words of font info for 35 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
- 41i,10n,32p,700b,260s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on notes_nitika.pdf (8 pages, 628626 bytes).
+ 1141 hyphenation exceptions out of 8191
+ 41i,14n,32p,1264b,279s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt10.pfb>
+Output written on notes_nitika.pdf (14 pages, 1568395 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 135 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

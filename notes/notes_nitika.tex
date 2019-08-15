@@ -4,6 +4,8 @@
 \usepackage{float} 
 \usepackage{graphicx}
 \usepackage{gensymb}
+\usepackage{array}
+
 
 \usepackage[margin=1in]{geometry}
 
@@ -193,7 +195,7 @@ Total brightness temperature is given by the following equation. A plot represen
  
 \subsection{Masking Pixels in Central Latitudes}
 
-Latitudes between $ -10\degree < b < 10\degree$ include emission from the galactic center that is not well understood. For our analysis, we wish to ignore these regions. Therefore, I have used \texttt{healpy}'s pixel querying function to set all of the pixels between these latitudes to \texttt{None}. The resulting map is shown in Figure~\ref{disk_mod}.
+Latitudes between $ -10\degree < b < 10\degree$ include emission from the galactic center that is not well understood. For our analysis, we wish to ignore these regions. Therefore, I have used \texttt{healpy}'s pixel querying function to set all of the pixels between these latitudes to \texttt{None}. The resulting map is shown in Figure~\ref{disk_mod}. Models masking only $ -5\degree < b < 5\degree$ were also run in order to better constrain parameters of the halo, but conclusive results have not been reached yet. 
 
 \begin{figure}[h]
 \begin{center}
@@ -230,7 +232,7 @@ Then, the specific intensity along a line of sight can be given by
 \section{Fitting Model Parameters}
 This section describes our methods for fitting model parameters to all sky maps downloaded from LAMBDA (https://lambda.gsfc.nasa.gov/). In order to calculate model paramters that best fit the data, we use Python package \texttt{emcee}. 
 
-\subsection{Attempt 1: Minimizing the Minimum of Residuals}
+\subsection{Minimizing the Minimum of Residuals}
 In our first attempt to fit our model to data, we assumed brightness contributions from a disk, extragalactic sources, and the CMB. Our likelihood function first calcualted residuals as a function of $l$ and $b$ as follows
 
 \[ T_{residual}(l,b) = T_{sky}(l,b) - T_{disk}(l,b) - T_{extragalactic} - T_{CMB} \]
@@ -245,7 +247,131 @@ and
 
 For this test, I downloaded the 1.4 GHz all sky map made by the Stockert and Villa-Elisa telescopes. The $3\sigma\ T_{rms}$ is reported to be 50 mK for this 1.4 GHz map. As the resolution of this map is quite high, \texttt{hp.pixelfunc.ud\_grade} is used downgrade the resolution, which speeds up the calculations. This model was not successful in predicting the model parameters, as creating a statistic based on only one pixel per sky map is unreliable. 
 
-\subsection{Attempt 2: Minimizing Contributions of Non-noise Residuals}
-Using the value of a single pixel as a statistic, as described in section 3.1, was poorly constraining.
+\subsection{Measuring Gaussianity of Residuals}
+Using the value of a single pixel as a statistic, as described in section 3.1, was poorly constraining. Additionally, it prefers a model where the minimum pixel value is zero, which is problematic as that means more emission than just noise is being left in the residuals. For an ideal model, the sky temperature minus the model temperature should just leave Gaussian noise. In reality, it is impossible for our rudimentary models to subtract precise structure, so we will be left with more positive residuals than negative. The residuals should follow a right-tailed distribution, where the negative residuals resemble half a Gaussian and the positive residuals include residual emission caused by Galactic structure. Taking this into account, our new likelihood will be a statistic determining how likely it is that our negative residuals are Gaussian. In order to do this, we employ the Kolmogorov-Smirnov test (KS test). This test measures the maximum distance between the cummulative distribution function of the residuals and an empirical distribution function (EDF). The empirical distribution function is calculated as such: given an ordered dataset $\left[x_1, x_2, ..., x_n,...,x_{N-1}, x_N\right] $, the EDF at every point is given by
+
+\[EDF = \frac{n}{N}\]
+
+An example of this is given in Figure~\ref{edf} for a set of 5000 random numbers generated in a Gaussian distribution with a mean of 0 and a standard devitation of 1. 
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{EDFexample.jpg}
+\caption{An empirical distribution function created for a set of Gaussian random numbers}
+\label{edf}
+\end{center}
+\end{figure}
+
+The test statistic, given by $\sqrt{N}D$, where $D$ is the maximum distance between the two functions given a dataset with $N$ samples, is then assigned a p-value that describes the likelihood of the data being Gaussian. The probability distribution function (PDF) as a function of the test statistic is shown in the left side of Figure~\ref{kspdf}. The p-value for each point is calculated by 
+
+\[p = 1 - \int_{0}^{\sqrt{N}D} PDF(x)\ dx \]
+
+A graph of the p-value as a function of statistic is shown in the right side of Figure~\ref{kspdf}. As the p-value increases with a decreasing test statistic, we felt it was a suitable quantity to represent how Gaussian our negative resdiuals were and we felt justified in using the p-value as our likelihood. 
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.49\textwidth]{kstestPDF.jpg}
+\includegraphics[width=0.49\textwidth]{kstest_pvaluedist.jpg}
+\caption{KS test probability density and p-values as a function of the test statistic $\sqrt{N}D$}
+\label{kspdf}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{minipage}{.5\textwidth}
+\centering
+\includegraphics[height=0.75\textwidth]{simulated_map.jpg}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\centering
+
+\hfill
+
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\centering\arraybackslash}m{1.75cm}|>{\centering\arraybackslash}m{1.75cm}|}
+\hline
+Quantity & Value \\
+\hline
+$R_{disk}$ & $1.5d$ \\
+\hline
+$h_{disk}$ & $0.2d$ \\
+\hline
+$j_{disk}$ & $10^{-40}$ \\
+\hline
+$R_{halo}$ & $3.0d$ \\
+\hline
+$j_{halo}$ & $10^{-41}$ \\
+\hline
+$T_{bkg}$ & $2.0$ \\
+\hline
+
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{minipage}
+
+\caption{Simulated sky map and parameters that went into the simulation. Some random noise was also added to this map.}
+\end{figure}
+
+
+To prove the viability of this method, I first tested it out on a simulated sky map. The sky map, shown in the left side of Figure~13, was created with a disk, halo, uniform background, CMB, and extragalactic component. Given the solar circle, $d$, the values fed into the simulated map are shown in the table in Figure~13. 
+
+\newpage
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{corner_simdata.jpg}
+\caption{Corner plot showing the results from the MCMC analysis of the simulated map.}
+\label{mcmcsim}
+\end{center}
+\end{figure}
+
+The results of the MCMC run to extract the parameters from the simulated map are shown in Figure~\ref{mcmcsim}. The plot shows that our analysis failed to constrain values for the radius of the disk as well as the temperature of the background. The emission coefficient of the disk is also poorly constrained. The remaining values have been correctly extracted within the error bars, though our model prefers increased emission from the disk and halo and no background temperature. The model also correctly plotted an anticorrelation between $h_{disk}$ and $j_{disk}$ as well as $R_{halo}$ and $j_{halo}$. Though not perfect, we decided to try and run the same analysis on the real sky map. I ran three models: disk+background, disk+halo, and disk+halo+background.
+
+\newpage
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{corner_disk+bkg.jpg}
+\caption{Corner plot showing the results from the MCMC analysis assuming a disk and uniform background model for the galaxy.}
+\label{corner_disk+bkg}
+\end{center}
+\end{figure}
+
+Figure~\ref{corner_disk+bkg} shows the corner plot for the model of the sky with a disk and uniform background. This plot again shows that the radius of the disk is poorly constrained. The main reason for this is because the all sky maps we fit to have the middle 20$\degree$ blocked out, so the areas of the disk that are affected by an increase in radius make no appearance in the residuals. Encouragingly, the anticorrelation between the disk height and emission coefficient is recovered. The background temperature has the highest probability to be around 0.65 K. Because of this, we can say that a model including a halo should be run to confirm or deny whether or not a halo is causing this excess temperature.
+
+\newpage
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{corner_disk+halo+bkg.jpg}
+\caption{Corner plot showing the results from the MCMC analysis assuming a disk, halo, and uniform background model for the galaxy.}
+\label{corner_disk+halo+bkg}
+\end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.93\textwidth]{corner_disk+halo.jpg}
+\caption{Corner plot showing the results from the MCMC analysis assuming only a disk and halo model for the galaxy (no uniform background).}
+\label{corner_disk+halo}
+\end{center}
+\end{figure}
+
+Looking at Figure~\ref{corner_disk+halo+bkg}, the background temperature looks to have been selected to be 0 most often. This raises the question of whether an extra background temperature exists with the halo included in the model. That is, does the halo explain the excess seen in the disk+background only model? To test this, I ran another model without the uniform background as a free parameter. The results of that analysis are shown in Figure~\ref{corner_disk+halo}. All of the inferred values for this model are consistent with the disk+halo+background model within 1$\sigma$, which could indicate that the halo accounts for any excess temperature present in models without the halo. Doing a test for model selection, such as calculating the BIC, for each of these models could provide more insight on whether or not a background temperature makes a significant difference in the residuals. 
+
+Still, this does not provide any conclusive evidence for the presence of the halo. It only says for certain that a disk model is not enough to explain all of the observed emission at these frequencies. A difficulty in this approach is that there is a lot of galactic foreground left in the residuals and it is hard to properly model the structure of the foreground to include in our analysis. Thus, we decided to use a different approach to subtract the galactic foreground, explained in the following section.
+
+\subsection{Subtracting Galactic Foreground via Methods Outlined by TRIS Team}
+TRIS, similar to ARCADE, is a low frequency balloon experiment that aimed to measure fluctutations in the CMB that would be harder to detect at higher frequencies used by experiments such as COBE, WMAP, and \emph{Planck}. TRIS utilized three absolutely calibrated radiometers at the following frequencies: 0.60 GHz, 0.82 GHz, and 2.5 GHz. However, strong and persistent RFI in the 2.5 GHz radiometer makes the observations unusable. 
+
+$\alpha_{1}$
+
+
+
+
 
 \end{document}

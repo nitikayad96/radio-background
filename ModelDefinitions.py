@@ -17,7 +17,7 @@ def LineOfSightDisk(l, b, d, R_disk, h_disk):
     l = np.deg2rad(l)
     b = np.deg2rad(b)
 
-    l = np.array([np.min([l_, (2*np.pi)-l_]) for l_ in l])
+    l = np.amin([l, (2*np.pi)-l],axis=0)
     b = np.abs(b)
     B_disk =  -l - np.arcsin((d/R_disk)*np.sin(l)) + np.pi
     r_disk = np.sqrt(-(2*R_disk*d*np.cos(B_disk)) + (R_disk**2) + (d**2))
@@ -87,10 +87,34 @@ def cscbplot(Tmap, NSIDE):
 
 
 # function to simulate a map. To just simulate a disk / halo, set j_halo / j_disk to 0. 
-def sim_map(T_bkg, R_disk, h_disk, j_disk, R_halo, j_halo, noise = 0.01):
+def sim_map(T_bkg, R_disk, h_disk, j_disk, R_halo, j_halo, nu, noise = 0.01):
 
     model = LineOfSightDisk(l, b, d, R_disk, h_disk)*j_disk*(c**2)/(2*k*(nu**2)) + T_bkg + LineOfSightHalo(l, b, d, R_halo)*j_halo*(c**2)/(2*k*(nu**2))
 
     model += noise*np.random.normal(size=len(model))
 
     return model
+
+def Spheroid(l, b, R_disk, h_disk):
+    
+    phi = np.deg2rad(np.array(l))
+    theta = np.deg2rad(90 - np.array(b))
+    
+    nx = np.sin(theta)*np.cos(phi)
+    ny = np.sin(theta)*np.sin(phi)
+    nz = np.cos(theta)
+    
+    t = np.array([np.linspace(0,d+R_disk,2000)])
+    
+    x = -d + np.multiply(t.T, nx)
+    y = np.multiply(t.T, ny)
+    z = np.multiply(t.T, nz)
+    
+    
+    res = np.abs(1 - (x**2 + y**2)/R_disk**2 - z**2/(0.5*h_disk)**2)
+    idx = np.argmin(res, axis=0)
+    
+    D_sph = np.sqrt((-d - np.diag(x[idx]))**2 + np.diag(y[idx])**2 + np.diag(z[idx])**2)
+    
+    return np.ravel(D_sph)
+    
