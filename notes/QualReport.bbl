@@ -1,0 +1,90 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Condon} {et~al.}(2012){Condon}, {Cotton}, {Fomalont}, {Kellermann},
+  {Miller}, {Perley}, {Scott}, {Vernstrom}, \& {Wall}}]{Condon2012}
+{Condon}, J.~J., {Cotton}, W.~D., {Fomalont}, E.~B., {et~al.} 2012, \apj, 758,
+  23
+
+\bibitem[{{Fixsen} {et~al.}(2011){Fixsen}, {Kogut}, {Levin}, {Limon}, {Lubin},
+  {Mirel}, {Seiffert}, {Singal}, {Wollack}, {Villela}, \&
+  {Wuensche}}]{Fixsen2011}
+{Fixsen}, D.~J., {Kogut}, A., {Levin}, S., {et~al.} 2011, \apj, 734, 5
+
+\bibitem[{{Foreman-Mackey} {et~al.}(2013){Foreman-Mackey}, {Hogg}, {Lang}, \&
+  {Goodman}}]{emcee}
+{Foreman-Mackey}, D., {Hogg}, D.~W., {Lang}, D., \& {Goodman}, J. 2013, \pasp,
+  125, 306
+
+\bibitem[{{Gervasi} {et~al.}(2008){Gervasi}, {Zannoni}, {Tartari}, {Boella}, \&
+  {Sironi}}]{Gervasi2008}
+{Gervasi}, M., {Zannoni}, M., {Tartari}, A., {Boella}, G., \& {Sironi}, G.
+  2008, \apj, 688, 24
+
+\bibitem[{{Ginzburg} \& {Syrovatsky}(1961)}]{Ginzburg1961}
+{Ginzburg}, V.~L., \& {Syrovatsky}, S.~I. 1961, Progress of Theoretical Physics
+  Supplement, 20, 1
+
+\bibitem[{{Hopkins} {et~al.}(2003){Hopkins}, {Afonso}, {Georgakakis},
+  {Sullivan}, {Mobasher}, \& {Cram}}]{Hopkins2003}
+{Hopkins}, A.~M., {Afonso}, J., {Georgakakis}, A., {et~al.} 2003, arXiv
+  e-prints, astro
+
+\bibitem[{{Kogut} {et~al.}(2011){Kogut}, {Fixsen}, {Levin}, {Limon}, {Lubin},
+  {Mirel}, {Seiffert}, {Singal}, {Villela}, {Wollack}, \&
+  {Wuensche}}]{Kogut2011}
+{Kogut}, A., {Fixsen}, D.~J., {Levin}, S.~M., {et~al.} 2011, \apj, 734, 4
+
+\bibitem[{{Mills}(1959)}]{Mills1959}
+{Mills}, B.~Y. 1959, in IAU Symposium, Vol.~9, URSI Symp. 1: Paris Symposium on
+  Radio Astronomy, ed. R.~N. {Bracewell}, 431
+
+\bibitem[{{Reich} \& {Reich}(1986)}]{Reich1986}
+{Reich}, P., \& {Reich}, W. 1986, \aaps, 63, 205
+
+\bibitem[{{Seiffert} {et~al.}(2011){Seiffert}, {Fixsen}, {Kogut}, {Levin},
+  {Limon}, {Lubin}, {Mirel}, {Singal}, {Villela}, {Wollack}, \&
+  {Wuensche}}]{Seiffert2011}
+{Seiffert}, M., {Fixsen}, D.~J., {Kogut}, A., {et~al.} 2011, \apj, 734, 6
+
+\bibitem[{{Singal} {et~al.}(2018){Singal}, {Haider}, {Ajello}, {Ballantyne},
+  {Bunn}, {Condon}, {Dowell}, {Fixsen}, {Fornengo}, {Harms}, {Holder}, {Jones},
+  {Kellermann}, {Kogut}, {Linden}, {Monsalve}, {Mertsch}, {Murphy}, {Orlando},
+  {Regis}, {Scott}, {Vernstrom}, \& {Xu}}]{Singal2018}
+{Singal}, J., {Haider}, J., {Ajello}, M., {et~al.} 2018, \pasp, 130, 036001
+
+\bibitem[{{Smol{\v{c}}i{\'c}} {et~al.}(2017){Smol{\v{c}}i{\'c}}, {Novak},
+  {Bondi}, {Ciliegi}, {Mooley}, {Schinnerer}, {Zamorani}, {Navarrete},
+  {Bourke}, {Karim}, {Vardoulaki}, {Leslie}, {Delhaize}, {Carilli}, {Myers},
+  {Baran}, {Delvecchio}, {Miettinen}, {Banfield}, {Balokovi{\'c}}, {Bertoldi},
+  {Capak}, {Frail}, {Hallinan}, {Hao}, {Herrera Ruiz}, {Horesh}, {Ilbert},
+  {Intema}, {Jeli{\'c}}, {Kl{\"o}ckner}, {Krpan}, {Kulkarni}, {McCracken},
+  {Laigle}, {Middleberg}, {Murphy}, {Sargent}, {Scoville}, \&
+  {Sheth}}]{Smolcic2017}
+{Smol{\v{c}}i{\'c}}, V., {Novak}, M., {Bondi}, M., {et~al.} 2017, \aap, 602, A1
+
+\bibitem[{{Subrahmanyan} \& {Cowsik}(2013)}]{Subrahmanyan2013}
+{Subrahmanyan}, R., \& {Cowsik}, R. 2013, \apj, 776, 42
+
+\bibitem[{{Tartari} {et~al.}(2008){Tartari}, {Zannoni}, {Gervasi}, {Boella}, \&
+  {Sironi}}]{Tartari2008}
+{Tartari}, A., {Zannoni}, M., {Gervasi}, M., {Boella}, G., \& {Sironi}, G.
+  2008, \apj, 688, 32
+
+\bibitem[{{Turtle} {et~al.}(1962){Turtle}, {Pugh}, {Kenderdine}, \&
+  {Pauliny-Toth}}]{Turtle1962}
+{Turtle}, A.~J., {Pugh}, J.~F., {Kenderdine}, S., \& {Pauliny-Toth}, I.~I.~K.
+  1962, \mnras, 124, 297
+
+\bibitem[{{Wiegert} {et~al.}(2015){Wiegert}, {Irwin}, {Miskolczi}, {Schmidt},
+  {Mora}, {Damas-Segovia}, {Stein}, {English}, {Rand}, {Santistevan},
+  {Walterbos}, {Krause}, {Beck}, {Dettmar}, {Kepley}, {Wezgowiec}, {Wang},
+  {Heald}, {Li}, {MacGregor}, {Johnson}, {Strong}, {DeSouza}, \&
+  {Porter}}]{Wiegert2015}
+{Wiegert}, T., {Irwin}, J., {Miskolczi}, A., {et~al.} 2015, \aj, 150, 81
+
+\bibitem[{{Zannoni} {et~al.}(2008){Zannoni}, {Tartari}, {Gervasi}, {Boella},
+  {Sironi}, {De Lucia}, {Passerini}, \& {Cavaliere}}]{Zannoni2008}
+{Zannoni}, M., {Tartari}, A., {Gervasi}, M., {et~al.} 2008, \apj, 688, 12
+
+\end{thebibliography}

@@ -15,8 +15,13 @@ TRIS_Tb[0.6e9] = np.float_(TRIS600txt[:,1])
 TRIS_Tb[0.82e9] = np.float_(TRIS820txt[:,1])
 
 TRIS_Tbsig = {}
-TRIS_Tbsig[0.6e9] = np.sqrt((np.float_(TRIS600txt[:,2]))**2 + 0.066**2 + 0.07**2)
-TRIS_Tbsig[0.82e9] = np.sqrt((np.float_(TRIS600txt[:,2]))**2 + 0.066**2 + 0.07**2)
+TRIS_Tbsig[0.6e9] = np.float_(TRIS600txt[:,2])
+TRIS_Tbsig[0.82e9] = np.float_(TRIS820txt[:,2])
+
+TRIS_Tbsys = {}
+TRIS_Tbsys[0.6e9] = 0.066
+TRIS_Tbsys[0.82e9] = 0.43
+
 
 
 TRIS_CMB = {}
@@ -59,4 +64,11 @@ Tgal_ref820 = 2.21
 Tsky_ref820 = TRIS_Tb[0.82e9][aref820]
 TRIS_Tgal[0.82e9] = TRIS_Tb[0.82e9] - Tsky_ref820 + Tgal_ref820
 
+# Mask out Cygnus X region
+idxmax = np.argmax(TRIS_Tb[0.6e9])
+idxrange = np.arange(idxmax-8, idxmax+8)
+TRIS600mask = np.array(TRIS_Tb[0.6e9])
+TRIS600mask[idxrange]=0
+
+cygxmask = np.where(TRIS600mask != 0)
 
