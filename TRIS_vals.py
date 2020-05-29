@@ -20,9 +20,11 @@ TRIS_Tbsig[0.82e9] = np.float_(TRIS820txt[:,2])
 
 TRIS_Tbsys = {}
 TRIS_Tbsys[0.6e9] = 0.066
-TRIS_Tbsys[0.82e9] = 0.43
+TRIS_Tbsys[0.82e9] = np.sqrt(0.3**2 + 0.43**2)
 
-
+TRIS_Tberrs = {}
+TRIS_Tberrs[0.6e9] = np.sqrt(TRIS_Tbsys[0.6e9]**2 + TRIS_Tbsig[0.6e9]**2)
+TRIS_Tberrs[0.82e9] = np.sqrt(TRIS_Tbsys[0.82e9]**2 + TRIS_Tbsig[0.82e9]**2)
 
 TRIS_CMB = {}
 TRIS_CMB[0.6e9] = 2.823
