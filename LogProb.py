@@ -46,6 +46,51 @@ def lnprob(param, nu, lower, upper, model):
 
 ############################ Multi-Freq Fit #################################
 
+# residual function
+def resid(param):
+
+        R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
+        R_disk *= d
+        h_disk *= d
+        R_halo *= d
+        j_disk = 10.**j_disk
+        j_halo = 10.**j_halo
+        T_bkg = param[7::]
+        resids = []
+        for i in range(len(T_bkg)):
+
+                model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
+
+                resids.append(np.log10(data[i]/((model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i])))
+
+        retvals = np.zeros(len(T_bkg)*len(resids[0]))
+        for i in range(len(T_bkg)):
+                retvals[i*len(resids[0]):(i+1)*len(resids[0])] = resids[i]
+
+        return retvals
+
+        
+
+# function to return data and model
+def return_stuff(param):
+
+        R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
+        j_disk = 10.**j_disk
+        j_halo = 10.**j_halo
+        R_disk *= d
+        h_disk *= d
+        R_halo *= d
+
+        T_bkg = param[7::]
+        returns = []
+        for i in range(len(T_bkg)):
+
+                model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
+                returns.append((data[i],(model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i]))
+
+        return returns
+        
+
 def multifreq(param):
 	
 	R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
