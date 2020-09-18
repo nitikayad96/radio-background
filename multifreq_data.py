@@ -13,6 +13,7 @@ import TRIS_vals as tris
 from const import *
 from TRIS_vals import *
 
+
 import importlib
 importlib.reload(const);
 importlib.reload(tris);
@@ -67,7 +68,6 @@ map150_idx = hp.ang2pix(NSIDE_map150, l, b, lonlat=True)
 
 map150_data = map150_smooth[map150_idx] - T_CMB
 map150_errs = 40 # K
-
 
 ########## All multi-freq data ##############
 data = np.array([map1420_data, TRIS820_data, TRIS600_data, haslam408_data, map150_data])

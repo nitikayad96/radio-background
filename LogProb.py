@@ -8,6 +8,7 @@ import numpy as np
 from scipy import stats
 from const import *
 from multifreq_data import *
+
 #from TRIS_vals import *
 #from ARCADE2_vals import *
 
@@ -49,67 +50,93 @@ def lnprob(param, nu, lower, upper, model):
 # residual function
 def resid(param):
 
-        R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
-        R_disk *= d
-        h_disk *= d
-        R_halo *= d
-        j_disk = 10.**j_disk
-        j_halo = 10.**j_halo
-        T_bkg = param[7::]
-        resids = []
-        for i in range(len(T_bkg)):
+	R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
+	R_disk *= d
+	h_disk *= d
+	R_halo *= d
+	j_disk = 10.**j_disk
+	j_halo = 10.**j_halo
+	T_bkg = param[7::]
+	resids = []
+	for i in range(len(T_bkg)):
 
-                model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
+		model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
 
-                resids.append(np.log10(data[i]/((model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i])))
+		resids.append(np.log10(data[i]/((model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i])))
 
-        retvals = np.zeros(len(T_bkg)*len(resids[0]))
-        for i in range(len(T_bkg)):
-                retvals[i*len(resids[0]):(i+1)*len(resids[0])] = resids[i]
+	retvals = np.zeros(len(T_bkg)*len(resids[0]))
+	for i in range(len(T_bkg)):
+		retvals[i*len(resids[0]):(i+1)*len(resids[0])] = resids[i]
 
-        return retvals
+	return retvals
 
         
 
 # function to return data and model
 def return_stuff(param):
 
-        R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
-        j_disk = 10.**j_disk
-        j_halo = 10.**j_halo
-        R_disk *= d
-        h_disk *= d
-        R_halo *= d
-
-        T_bkg = param[7::]
-        returns = []
-        for i in range(len(T_bkg)):
-
-                model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
-                returns.append((data[i],(model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i]))
-
-        return returns
-        
-
-def multifreq(param):
-	
 	R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
-	
+	j_disk = 10.**j_disk
+	j_halo = 10.**j_halo
+	R_disk *= d
+	h_disk *= d
+	R_halo *= d
 
 	T_bkg = param[7::]
+	returns = []
+	for i in range(len(T_bkg)):
+
+		model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
+		returns.append((data[i],(model)*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i]))
+
+	return returns
+
+
+########## Simulated Data ##################
+
+p_sim = [2.5e+00,  5e-01, -4.05e+01,  6.55e-01, 2.3e+00, -4.15e+01,  9.2e-01,  2.2e-01, 1.5e+00,  5e+00,  7e+00,  9e+00]
+d_sim = return_stuff(p_sim)
+data_sim = np.array([d_sim[0][1], d_sim[1][1], d_sim[2][1], d_sim[3][1], d_sim[4][1]])
+noise = np.random.randn(data_sim.shape[0], data_sim.shape[1])*0.01 + 1
+data_noisy = np.multiply(data_sim, noise)
+
+###############################################
+        
+
+def multifreq(param, sim):
 	
+	R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo, T_1420, T_820, T_600, T_408, T_150 = param
+	j_disk = 10.**j_disk
+	j_halo = 10.**j_halo
+	R_disk *= d
+	h_disk *= d
+	R_halo *= d
+	
+	T_bkg = param[7::]
+
 	lnL = 0
 	for i in range(len(T_bkg)):
 
-		model = MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo)
-		residuals = data[i] - (model)*(c**2)/(2*k*(freqs[i]**2)) - T_bkg[i]
+		model = (MD.Spheroid(l, b, R_disk, h_disk)*j_disk*(freqs[i]/(1e9))**(-a_disk) + MD.LineOfSightHalo(l, b, R_halo)*j_halo*(freqs[i]/(1e9))**(-a_halo))*(c**2)/(2*k*(freqs[i]**2)) + T_bkg[i]
 
-		lnL += np.sum(np.log(1/(np.sqrt(2*np.pi)*errs[i]))) - np.sum((residuals**2)/(2*errs[i]**2))
+		if sim==False:
+			data_ = data[i]
+			
+
+		if sim==True:
+			data_ = data_sim[i]
+			
+
+		lnL += -np.sum(np.abs(np.log10(data_/model)))
+			
+
+#		residuals = data_ - model
+#		lnL += np.sum(np.log(1/(np.sqrt(2*np.pi)*errs[i]))) - np.sum((residuals**2)/(2*errs[i]**2))
 
 
 	return lnL
 
-def lnprob_multi(param, lower, upper):
+def lnprob_multi(param, lower, upper, sim):
 
 	param = np.array(param)
 	lower = np.array(lower)
@@ -120,9 +147,42 @@ def lnprob_multi(param, lower, upper):
 	if not np.isfinite(lp):
 		return -np.inf
 
-	return lp + multifreq(param)
+	return lp + multifreq(param,sim)
 
-##############################################################################
+############################## TRIS ###########################################
+
+
+def TRISmodel(param,nu):
+
+	R_disk, h_disk, j_disk, R_halo, j_halo, sig_sys = param
+	j_disk = 10.**j_disk
+	j_halo = 10.**j_halo
+	R_disk *= d
+	h_disk *= d
+	R_halo *= d
+
+	sph1 = MD.Spheroid(TRIS_l[nu], TRIS_b[nu], R_disk, h_disk)*j_disk
+	halo1 = MD.LineOfSightHalo(TRIS_l[nu], TRIS_b[nu], R_halo)*j_halo
+
+	model = (sph1 + halo1)*(c**2)/(2*k*(nu**2))  + T_CMB
+	return model
+
+TRIS_psim = [2e+00,  6e-01, -4.04e+01, 3e+00, -4.1e+01, 0]
+TRIS_sim_ = TRISmodel(TRIS_psim, 600e6)
+TRIS_noise = np.random.randn(len(TRIS_l[600e6]))*0.01 + 1
+TRIS_sim = np.multiply(TRIS_sim_, TRIS_noise)
+  
+	
+def diskhalo_TRIS(param, nu):
+	    
+	R_disk, h_disk, j_disk, R_halo, j_halo, sig_sys = param
+
+	#residuals = TRIS_sim_ - TRISmodel(param,nu)
+	residuals = TRIS_Tb[0.6e9] - TRISmodel(param,nu)
+
+	err_tot = np.sqrt(TRIS_Tberrs[nu]**2 + sig_sys**2)
+	lnL = np.sum(np.log(1/(np.sqrt(2*np.pi)*err_tot))) - np.sum((residuals**2)/(2*err_tot**2))
+	return lnL
 
 ####################### All sky map models ###################################
 
@@ -191,18 +251,9 @@ def lnprob_multi(param, lower, upper):
 #	lnL = np.sum(np.log(1/np.sqrt(2*np.pi*err_tot)) - np.sum((residuals**2)/(2*err_tot**2))
 #	return lnL
 
-## sph + halo #
-
-#def diskhalo_TRIS(param, nu):
-#	    
-#	R_disk, h_disk, j_disk, R_halo, j_halo, T_bkg = param
-#	sph1 = MD.Spheroid(TRIS_l[nu], TRIS_b[nu], R_disk, h_disk)*j_disk
-#	halo1 = MD.LineOfSightHalo(TRIS_l[nu], TRIS_b[nu], d, R_halo)*j_halo
-#	residuals = TRIS_Tb[nu] - (sph1 + halo1)*(c**2)/(2*k*(nu**2)) - T_CMB - T_bkg
+# sph + halo #
 
 
-#	lnL = np.sum(np.log(1/(np.sqrt(2*np.pi)*TRIS_Tberrs[nu]))) - np.sum((residuals**2)/(2*TRIS_Tberrs[nu]**2))
-#	return lnL
 
 
 ################################ ARCADE2 #########################################
@@ -235,187 +286,5 @@ def lnprob_multi(param, lower, upper):
 
 
 ##############################################################################
-'''
-### ln(likelihood) for disk only model, including T_eg and T_CMB and T_bkg ###
-
-
-### ln(likelihood) for halo model, including T_eg and T_CMB and T_bkg ###
-def halobkg(param, nu, l, b, T_sky):
-    
-	    
-	R_halo = param[0]
-	j_halo = param[1]
-	T_bkg = param[2]
-
-	# residuals = T_res = T_sky - T_eg - T_CMB - T_disk - T_halo
-	T_skysub = T_sky - T_eg - T_CMB - T_bkg
-	residuals = T_skysub - (MD.LineOfSightHalo(l, b, d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-	residuals[idx_exb] = None
-
-	neg_res_idx = np.argwhere(residuals<=0)
-
-	if len(neg_res_idx)<10:
-		return -np.inf
-
-	
-	neg_res = residuals[neg_res_idx]
-
-	neg_res2 = np.concatenate((neg_res, np.negative(neg_res)))
-	L = stats.kstest(neg_res2.T, 'norm')[1]
-
-	lnL = np.log(L)
-	return lnL
-
-### ln(likelihood) for disk + halo model, including T_eg and T_CMB###
-def diskhalo(param, nu, l, b, T_sky):
-    
-	    
-	R_disk = param[0]
-	h_disk = param[1]
-	j_disk = param[2]
-	R_halo = param[3]
-	j_halo = param[4]
-
-	# residuals = T_res = T_sky - T_eg - T_CMB - T_disk - T_halo
-	T_skysub = T_sky - T_eg - T_CMB
-	residuals = T_skysub - (MD.LineOfSightDisk(l, b, d, R_disk, h_disk)*j_disk + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-	residuals[idx_exb] = None
-
-	neg_res_idx = np.argwhere(residuals<=0)
-
-	if len(neg_res_idx)<10:
-		return -np.inf
-
-	
-	neg_res = residuals[neg_res_idx]
-
-	neg_res2 = np.concatenate((neg_res, np.negative(neg_res)))
-	L = stats.kstest(neg_res2.T, 'norm')[1]
-
-	lnL = np.log(L)
-	return lnL
-
-
-### ln(likelihood) for disk + halo + uniform background model, including T_eg and T_CMB ###
-
-
-### ln(likelihood) for disk + halo + uniform background model, excluding T_eg and T_CMB ###
-def diskhalobkg_nocmb(param, nu, l, b, T_sky):
-
-	R_disk = param[0]
-	h_disk = param[1]
-	j_disk = param[2]
-	R_halo = param[3]
-	j_halo = param[4]
-	T_bkg = param[5]
-
-	# residuals = T_res = T_sky - T_disk - T_halo - T_bkg
-	T_skysub = T_sky - T_bkg
-	residuals = T_skysub - (MD.LineOfSightDisk(l, b, d, R_disk, h_disk)*j_disk + MD.LineOfSightHalo(l, b, d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-	residuals[idx_exb] = None
-
-	neg_res_idx = np.argwhere(residuals<=0)
-
-	if len(neg_res_idx)<10:
-		return -np.inf
-
-	
-	neg_res = residuals[neg_res_idx]
-
-	neg_res2 = np.concatenate((neg_res, np.negative(neg_res)))
-	D = stats.kstest(neg_res2.T, 'norm')[0]
-	n = len(neg_res2)
-	
-	idx = np.argmin(np.abs(nD-(np.sqrt(n)*D)))
-	L = PDF[idx] 
-
-	#L = stats.kstest(neg_res2.T, 'norm')[1]
-
-
-	lnL = np.log(L)
-	return lnL
-
-
-
-##################################################################################################################
-
-# Functions specific for analyzing TRIS data. Data formatted for these functions is stored in TRIS_vals.py
-
-##################################################################################################################
-
-
-### ln(likelihood) for disk + halo model ###
-def diskhalo_TRIS(param, nu):
-	    
-	R_disk, h_disk, j_disk, R_halo, j_halo = param
-
-	# residuals = T_res = T_gal - T_disk - T_halo
-#	residuals = TRIS_Tgal[nu] - (MD.LineOfSightDisk(TRIS_l[nu], TRIS_b[nu], d, R_disk, h_disk)*j_disk + MD.LineOfSightHalo(TRIS_l[nu], TRIS_b[nu], d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-
-	residuals = TRIS_Tgal[nu] - (MD.Spheroid(TRIS_l[nu], TRIS_b[nu], R_disk, h_disk)*j_disk + MD.LineOfSightHalo(TRIS_l[nu], TRIS_b[nu], d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-
-	# reject models where any of the negative residuals are greater than 3*sigma in order to prevent over fitting
-	if np.any(residuals < -3*TRIS_Tbsig[nu]):
-		return -np.inf
-
-	lnL = -np.trapz(np.abs(residuals), x=TRIS_ra[nu])
-	return lnL
-
-def spheroids_TRIS(param, nu):
-	    
-	R_disk, h_disk, j_disk, R_halo, h_halo, j_halo = param
-
-	# residuals = T_res = T_gal - T_disk - T_halo
-	disk = MD.Spheroid(TRIS_l[nu], TRIS_b[nu], R_disk, h_disk)*j_disk
-	halo = MD.Spheroid(TRIS_l[nu], TRIS_b[nu], R_halo, h_halo)*j_halo
-
-	residuals = TRIS_Tgal[nu] - (disk+halo)*(c**2)/(2*k*(nu**2)) 
-
-	lnL = -np.trapz(np.abs(residuals[cygxmask]), x=TRIS_ra[nu][cygxmask])
-	return lnL
-
-
-### ln(likelihood) for halo model ###
-def halo_TRIS(param, nu):
-	    
-	R_halo = param[0]
-	j_halo = param[1]
-
-	# residuals = T_res = T_gal - T_disk - T_halo
-
-	residuals = TRIS_Tgal[nu] - (MD.LineOfSightHalo(TRIS_l[nu], TRIS_b[nu], d, R_halo)*j_halo)*(c**2)/(2*k*(nu**2))
-
-	# reject models where any of the negative residuals are greater than 3*sigma in order to prevent over fitting
-	if np.any(residuals < -3*TRIS_Tbsig[nu]):
-		return -np.inf
-
-	lnL = -np.trapz(np.abs(residuals), x=TRIS_ra[nu])
-	return lnL
-
-
-### ln(likelihood) for disk model ###
-
-
-
-### lnL for a spheroid+halo model, including a spectral index to analyze both frequency bands simultaneously 
-
-def multi_TRIS(param, nu1, nu2):
-
-	R_disk, h_disk, j_disk, a_disk, R_halo, j_halo, a_halo = param
-
-	m_disk = (nu2/nu1)**a_disk
-	m_halo = (nu2/nu1)**a_halo
-
-	sph1 = MD.Spheroid(TRIS_l[nu1], TRIS_b[nu1], R_disk, h_disk)*j_disk
-	halo1 = MD.LineOfSightHalo(TRIS_l[nu1], TRIS_b[nu1], d, R_halo)*j_halo
-
-	res1 = TRIS_Tgal[nu1] - (sph1 + halo1)*(c**2)/(2*k*(nu1**2))
-
-	res2 = TRIS_Tgal[nu2] - (sph1*m_disk + halo1*m_halo)*(c**2)/(2*k*(nu1**2))
-
-	lnL = -(np.trapz(np.abs(res1), x=TRIS_ra[nu1]) + np.trapz(np.abs(res2), x=TRIS_ra[nu1]))
-	return lnL
-
-'''
 
 

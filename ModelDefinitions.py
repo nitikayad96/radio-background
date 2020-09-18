@@ -7,7 +7,7 @@
 import numpy as np
 from const import *
 
-def LineOfSightDisk(l, b, d, R_disk, h_disk):
+def LineOfSightDisk(l, b, R_disk, h_disk):
     
     # first calculate length of line of sight through disk
     
@@ -31,7 +31,7 @@ def LineOfSightDisk(l, b, d, R_disk, h_disk):
     return np.array(D_disk)
         
 
-def LineOfSightHalo(l, b, d, R_halo):  
+def LineOfSightHalo(l, b, R_halo):  
     
     # calculate length of line of sight through halo
     
